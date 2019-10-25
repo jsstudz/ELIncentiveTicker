@@ -17,6 +17,8 @@ window.onload = getData();
 function getData() {
     if(userData.showIncentives) getIncentives();
     if(userData.showMilestones) getMilestones();
+    container.innerText = userData.showIncentives ? incentives[counter] : milestones[counter];
+    counter++;
 };
 
 function getMilestones() {
@@ -25,7 +27,7 @@ function getMilestones() {
         async: false,
         dataType: 'json',
         success: function(data) {
-            milestones = data;
+            milestones = data.map(m => "$" + m.fundraisingGoal + " " + m.description);
         }
     });
 }
@@ -36,17 +38,16 @@ function getIncentives() {
         async: false,
         dataType: 'json',
         success: function(data) {
-            incentives = data;
+            incentives = data.map(i => "$" + i.amount + " " + i.description);
         }
     });
 }
 
 function change() {
-    var incentive = incentives[counter];
-    container.innerText = incentive.amount + " " + incentive.description;
+    container.innerText = incentives[counter];
     counter++;
     if(counter >= incentives.length) { counter = 0; }
 }
 
-setInterval(change, 1000);
+setInterval(change, 5000);
 
