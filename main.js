@@ -1,5 +1,5 @@
 var userData = {
-    "participantId" : 347722,
+    "participantId" : 0,
     "showMilestones" : true,
     "showIncentives" : true
 };
@@ -9,16 +9,18 @@ var MILESTONE_END_POINT = "/milestones";
 var INCENTIVE_END_POINT = "/incentives";
 var milestones = {};
 var incentives = {};
-var container = document.getElementById("container");
-var counter = 0;
+var incentiveContainer = document.getElementById("incentives");
+var milestoneContainer = document.getElementById("milestones")
+var incentiveCounter = 0;
+var milestoneCounter = 0;
 
-window.onload = getData();
+window.onload = initialize();
 
-function getData() {
+function initialize() {
     if(userData.showIncentives) getJson(INCENTIVE_END_POINT, true);
     if(userData.showMilestones) getJson(MILESTONE_END_POINT, false);
-    container.innerText = userData.showIncentives ? incentives[counter] : milestones[counter];
-    counter++;
+    assignOrRemoveElement(incentiveContainer, userData.showIncentives, incentives, incentiveCounter);
+    assignOrRemoveElement(milestoneContainer, userData.showMilestones, milestones, milestoneCounter);
 };
 
 function getJson(endPoint, isIncentives) {
@@ -37,10 +39,30 @@ function getJson(endPoint, isIncentives) {
     });
 }
 
+function assignOrRemoveElement(element, show, data, counter) {
+    if(show) {
+        element.innerText = data[counter];
+        counter++;
+    } else {
+        element.parentNode.removeChild(element);
+    }
+}
+
 function change() {
-    container.innerText = incentives[counter];
-    counter++;
-    if(counter >= incentives.length) { counter = 0; }
+   if(userData.showIncentives) loopThroughIncentives();
+   if(userData.showMilestones) loopThroughMilestones();
+}
+
+function loopThroughIncentives() {
+    incentiveContainer.innerText = incentives[incentiveCounter];
+    incentiveCounter++;
+    if(incentiveCounter >= incentives.length) { incentiveCounter = 0; }
+}
+
+function loopThroughMilestones() {
+    milestoneContainer.innerText = milestones[milestoneCounter];
+    milestoneCounter++;
+    if(milestoneCounter >= milestones.length) { milestoneCounter = 0; }
 }
 
 setInterval(change, 5000);
