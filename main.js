@@ -49,20 +49,14 @@ function assignOrRemoveElement(element, show, data, counter) {
 }
 
 function change() {
-   if(userData.showIncentives) loopThroughIncentives();
-   if(userData.showMilestones) loopThroughMilestones();
+   if(userData.showIncentives) changeContainerText(incentiveContainer, incentives, incentiveCounter);
+   if(userData.showMilestones) changeContainerText(milestoneContainer, milestones, milestoneCounter);
 }
 
-function loopThroughIncentives() {
-    incentiveContainer.innerText = incentives[incentiveCounter];
-    incentiveCounter++;
-    if(incentiveCounter >= incentives.length) { incentiveCounter = 0; }
-}
-
-function loopThroughMilestones() {
-    milestoneContainer.innerText = milestones[milestoneCounter];
-    milestoneCounter++;
-    if(milestoneCounter >= milestones.length) { milestoneCounter = 0; }
+function changeContainerText(container, data, counter) {
+    container.innerText = data[counter];
+    counter++;
+    if(counter >= data.length) {counter = 0;}
 }
 
 setInterval(change, 5000);
