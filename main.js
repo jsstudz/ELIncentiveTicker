@@ -15,30 +15,24 @@ var counter = 0;
 window.onload = getData();
 
 function getData() {
-    if(userData.showIncentives) getIncentives();
-    if(userData.showMilestones) getMilestones();
+    if(userData.showIncentives) getJson(INCENTIVE_END_POINT, true);
+    if(userData.showMilestones) getJson(MILESTONE_END_POINT, false);
     container.innerText = userData.showIncentives ? incentives[counter] : milestones[counter];
     counter++;
 };
 
-function getMilestones() {
+function getJson(endPoint, isIncentives) {
     $.ajax({
-        url: BASE_URL.replace("{participantId}", userData.participantId) + MILESTONE_END_POINT,
+        url: BASE_URL.replace("{participantId}", userData.participantId) + endPoint,
         async: false,
         dataType: 'json',
         success: function(data) {
-            milestones = data.map(m => "$" + m.fundraisingGoal + " " + m.description);
-        }
-    });
-}
-
-function getIncentives() {
-    $.ajax({
-        url: BASE_URL.replace("{participantId}", userData.participantId) + INCENTIVE_END_POINT,
-        async: false,
-        dataType: 'json',
-        success: function(data) {
-            incentives = data.map(i => "$" + i.amount + " " + i.description);
+            if(isIncentives) {
+                incentives = data.map(i => "$" + i.amount + " " + i.description);
+            }
+            else {
+                milestones = data.map(m => "$" + m.fundraisingGoal + " " + m.description);
+            }
         }
     });
 }
