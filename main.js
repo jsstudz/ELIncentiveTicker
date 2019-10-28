@@ -1,10 +1,10 @@
 var userData = {
-    "participantId" : 0,
+    "participantId" : 347722,
     "showMilestones" : true,
     "showIncentives" : true
 };
 
-var BASE_URL = "http://www.extra-life.org/api/participants/{participantId}"
+var BASE_URL = "http://www.extra-life.org/api/participants/{participantId}/"
 var MILESTONE_END_POINT = "/milestones";
 var INCENTIVE_END_POINT = "/incentives";
 var milestones = {};
@@ -49,14 +49,16 @@ function assignOrRemoveElement(element, show, data, counter) {
 }
 
 function change() {
-   if(userData.showIncentives) changeContainerText(incentiveContainer, incentives, incentiveCounter);
-   if(userData.showMilestones) changeContainerText(milestoneContainer, milestones, milestoneCounter);
-}
-
-function changeContainerText(container, data, counter) {
-    container.innerText = data[counter];
-    counter++;
-    if(counter >= data.length) {counter = 0;}
+   if(userData.showIncentives) { 
+       incentiveContainer.innerText = incentives[incentiveCounter];
+       incentiveCounter++;
+       if(incentiveCounter >= incentives.length) { incentiveCounter = 0;}
+    }
+   if(userData.showMilestones) {
+        milestoneContainer.innerText = milestones[milestoneCounter];
+        milestoneCounter++;
+       if(milestoneCounter >= milestones.length) { milestoneCounter = 0;}
+   }
 }
 
 setInterval(change, 5000);
