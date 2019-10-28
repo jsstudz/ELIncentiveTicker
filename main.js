@@ -7,22 +7,16 @@ var userData = {
 var BASE_URL = "http://www.extra-life.org/api/participants/{participantId}/"
 var MILESTONE_END_POINT = "/milestones";
 var INCENTIVE_END_POINT = "/incentives";
-var milestones = {};
-var incentives;
-var incentiveContainer = document.getElementById("incentives");
-var milestoneContainer = document.getElementById("milestones")
-var incentiveCounter = 0;
-var milestoneCounter = 0;
+var combinedText = "";
+var container = document.getElementById("container");
 
 window.onload = initialize();
 
 function initialize() {
     if(userData.showIncentives) getJson(INCENTIVE_END_POINT, true);
     if(userData.showMilestones) getJson(MILESTONE_END_POINT, false);
-    incentiveContainer.innerText = incentives;
+    container.innerText = combinedText;
     initializeMarquee();
-    //assignOrRemoveElement(incentiveContainer, userData.showIncentives, incentives, incentiveCounter);
-    //assignOrRemoveElement(milestoneContainer, userData.showMilestones, milestones, milestoneCounter);
 };
 
 function getJson(endPoint, isIncentives) {
@@ -32,11 +26,10 @@ function getJson(endPoint, isIncentives) {
         dataType: 'json',
         success: function(data) {
             if(isIncentives) {
-                var elements = data.map(i => "$" + i.amount + " - " + i.description);
-                incentives = elements.join(" ");
+                combinedText += " Incentives: " + data.map(i => "$" + i.amount + " - " + i.description).join(" ");
             }
             else {
-                milestones = data.map(m => "$" + m.fundraisingGoal + " - " + m.description);
+                combinedText += " Milestones: " + data.map(m => "$" + m.fundraisingGoal + " - " + m.description).join(" ");
             }
         }
     });
