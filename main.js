@@ -30,10 +30,10 @@ function getJson(endPoint, isIncentives) {
         dataType: 'json',
         success: function(data) {
             if(isIncentives) {
-                incentives = data.map(i => "$" + i.amount + " " + i.description);
+                incentives = data.map(i => "$" + i.amount + " - " + i.description);
             }
             else {
-                milestones = data.map(m => "$" + m.fundraisingGoal + " " + m.description);
+                milestones = data.map(m => "$" + m.fundraisingGoal + " - " + m.description);
             }
         }
     });
