@@ -1,7 +1,8 @@
 var userData = {
     "participantId" : 347722,
     "showMilestones" : true,
-    "showIncentives" : true
+    "showIncentives" : true,
+    "marqueeSpeedInMilliseconds" : 25000
 };
 
 var BASE_URL = "http://www.extra-life.org/api/participants/{participantId}/"
@@ -43,7 +44,7 @@ function initializeMarquee() {
         delayBeforeStart: 0,
         direction: 'left',
         duplicated: false,
-        duration: 10000,
+        duration: userData.marqueeSpeedInMilliseconds,
         gap: 20,
         pauseOnCycle: false,
         pauseOnHover: false,
