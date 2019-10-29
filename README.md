@@ -9,6 +9,7 @@ This is free for anyone to use. If you feel so inclined to contribute to my Extr
   Download as a ZIP file.  
   Unzip file to location of your choosing.  
   Open up main.js in notepad.  
-  Under userData, change the participant ID to your participant ID (found on your Extra Life URL page).  
+  Under userData, change the participant ID to your participant ID (found on your Extra Life URL page).
+  Under userData, adjust the value of marquee speed to speed up/ slow down the marquee  
   You can change Incentives and Milestones to either true or false depending what you want to display on screen.  
   Add as browser source to OBS/SLOBS and change as needed.  
