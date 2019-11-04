@@ -2,7 +2,7 @@ var userData = {
     "participantId" : 347722,
     "showMilestones" : true,
     "showIncentives" : true,
-    "marqueeSpeedInMilliseconds" : 25000
+    "marqueeSpeedInMilliseconds" : 15000
 };
 
 var BASE_URL = "http://www.extra-life.org/api/participants/{participantId}/"
