@@ -27,10 +27,10 @@ function getJson(endPoint, isIncentives) {
         dataType: 'json',
         success: function(data) {
             if(isIncentives) {
-                combinedText += " Incentives: " + data.map(i => "$" + i.amount + " - " + i.description).join(" ");
+                combinedText += " Incentives: " + data.map(i => "$" + i.amount + " - " + i.description).join(" " + "| ");
             }
             else {
-                combinedText += " Milestones: " + data.map(m => "$" + m.fundraisingGoal + " - " + m.description).join(" ");
+                combinedText += " Milestones: " + data.map(m => "$" + m.fundraisingGoal + " - " + m.description).join(" " + "| ");
             }
         }
     });
