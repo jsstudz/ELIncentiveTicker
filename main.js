@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * 1. Implement isComplete on Milestones as a filter, preferably on request
+ * 2. Show only Incentives that are have not been fully redeemed (might be done already?)
+ * 3. Refresh every X to pull Milestones/Incentives with updated information (isComplete, all redeemed)
+ */
 var userData = {
     "participantId" : 400560,
     "showMilestones" : true,
